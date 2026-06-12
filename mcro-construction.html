@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCRO Construction Ltd — Building Done Right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16181a;          /* charcoal */
+    --concrete:#e9e7e2;     /* poured concrete */
+    --steel:#8d949c;        /* mid steel grey */
+    --safety:#f5a300;       /* site amber */
+    --paper:#f7f6f3;
+    --line:#d4d1ca;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .display{
+    font-family:'Archivo',sans-serif;
+    font-variation-settings:'wdth' 70;
+    font-weight:850;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:.95;
+  }
+  .eyebrow{
+    font-family:'Archivo',sans-serif;
+    font-variation-settings:'wdth' 80;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:.75rem;
+    letter-spacing:.18em;
+    color:var(--steel);
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* hazard stripe — the signature */
+  .stripe{
+    height:14px;
+    background:repeating-linear-gradient(135deg,
+      var(--safety) 0 18px, var(--ink) 18px 36px);
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1100px;margin:0 auto;
+  }
+  .logo{font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 70;
+    font-weight:900;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em;}
+  .logo span{color:var(--safety)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{
+    text-decoration:none;color:var(--ink);font-size:.9rem;font-weight:500;
+  }
+  .nav-links a:hover{color:var(--safety)}
+  .btn{
+    display:inline-block;
+    background:var(--ink);color:#fff;
+    padding:12px 26px;
+    font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 80;
+    font-weight:700;text-transform:uppercase;font-size:.8rem;letter-spacing:.08em;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    transition:background .15s,color .15s;
+  }
+  .btn:hover{background:var(--safety);border-color:var(--safety);color:var(--ink)}
+  .btn.amber{background:var(--safety);border-color:var(--safety);color:var(--ink)}
+  .btn.amber:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  /* HERO */
+  header.hero{
+    background:var(--concrete);
+    padding:90px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero h1{
+    font-size:clamp(3rem,9vw,7rem);
+    max-width:14ch;
+  }
+  .hero h1 em{font-style:normal;color:var(--safety);
+    -webkit-text-stroke:0;
+  }
+  .hero p.lead{
+    margin-top:28px;max-width:48ch;font-size:1.1rem;color:#41464b;
+  }
+  .hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero .site-ref{
+    position:absolute;right:24px;top:24px;
+    font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--steel);
+    writing-mode:vertical-rl;
+  }
+
+  section{padding:80px 0}
+  h2.section-title{
+    font-size:clamp(1.8rem,4vw,2.8rem);
+    margin:10px 0 40px;
+  }
+
+  /* SERVICES */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .service{
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:28px 24px;
+    transition:background .15s;
+  }
+  .service:hover{background:#fff}
+  .service h3{
+    font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 75;
+    font-weight:800;text-transform:uppercase;font-size:1.05rem;
+    margin-bottom:10px;
+  }
+  .service p{font-size:.92rem;color:#4a4f54}
+  .service .tick{color:var(--safety);font-weight:900;margin-right:8px}
+
+  /* WHY */
+  .why{background:var(--ink);color:var(--concrete)}
+  .why .eyebrow{color:var(--safety)}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:10px}
+  .why-item h3{
+    font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 75;
+    font-weight:800;text-transform:uppercase;font-size:1rem;
+    border-top:3px solid var(--safety);
+    padding-top:14px;margin-bottom:10px;
+  }
+  .why-item p{font-size:.92rem;color:#b9bcc0}
+
+  /* CONTACT */
+  .contact{background:var(--concrete)}
+  .contact-card{
+    background:#fff;border:1px solid var(--line);
+    padding:48px 40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+  }
+  .contact-card h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:18px}
+  .contact-list a{
+    color:var(--ink);text-decoration:none;font-weight:600;font-size:1.1rem;
+    word-break:break-all;
+  }
+  .contact-list a:hover{color:var(--safety)}
+  .contact-list .label{display:block;font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.15em;color:var(--steel);font-family:'Archivo',sans-serif;font-weight:700;margin-bottom:2px}
+
+  footer{
+    background:var(--ink);color:var(--steel);
+    padding:28px 0;font-size:.85rem;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer .logo{color:#fff;font-size:1rem}
+  footer .logo span{color:var(--safety)}
+
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--safety);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  @media(max-width:720px){
+    .nav-links a:not(.btn){display:none}
+    .contact-card{grid-template-columns:1fr;padding:32px 24px}
+    .hero .site-ref{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">MCRO<span>.</span> Construction</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#contact" class="btn amber">Get a quote</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="site-ref">MCRO CONSTRUCTION LTD · EST. UK</span>
+  <div class="wrap">
+    <p class="eyebrow">Residential &amp; Commercial Building Contractors</p>
+    <h1 class="display">Built solid.<br>Built on <em>time.</em></h1>
+    <p class="lead">MCRO Construction Ltd delivers building work the way it should be done — clear quotes, clean sites, and finishes that stand up to inspection. From extensions to full builds, one team takes your project from groundworks to handover.</p>
+    <div class="cta-row">
+      <a class="btn amber" href="#contact">Request a free quote</a>
+      <a class="btn" href="tel:07961702525">Call 07961 702525</a>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <p class="eyebrow">What we do</p>
+    <h2 class="section-title display">Our services</h2>
+    <div class="services-grid">
+      <div class="service">
+        <h3><span class="tick">✓</span>Extensions</h3>
+        <p>Single and double-storey extensions designed and built to add real space and value to your home.</p>
+      </div>
+      <div class="service">
+        <h3><span class="tick">✓</span>Renovations</h3>
+        <p>Full property refurbishments — from structural alterations to final decoration, managed end to end.</p>
+      </div>
+      <div class="service">
+        <h3><span class="tick">✓</span>New builds</h3>
+        <p>Complete new-build construction from foundations up, delivered to spec, to budget, and to schedule.</p>
+      </div>
+      <div class="service">
+        <h3><span class="tick">✓</span>Loft conversions</h3>
+        <p>Turn unused roof space into bedrooms, offices, or studios with structurally sound, fully compliant work.</p>
+      </div>
+      <div class="service">
+        <h3><span class="tick">✓</span>Groundworks</h3>
+        <p>Foundations, drainage, driveways, and site preparation done properly the first time.</p>
+      </div>
+      <div class="service">
+        <h3><span class="tick">✓</span>General building</h3>
+        <p>Brickwork, roofing, kitchens, bathrooms, and repairs — no job too small to be done well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <p class="eyebrow">Why MCRO</p>
+    <h2 class="section-title display">The way we work</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>Fixed, honest quotes</h3>
+        <p>You get a clear written quote before work starts. No hidden extras, no surprises on the final bill.</p>
+      </div>
+      <div class="why-item">
+        <h3>One point of contact</h3>
+        <p>Deal directly with the people doing the work. Questions get answered the same day, not next week.</p>
+      </div>
+      <div class="why-item">
+        <h3>Clean, safe sites</h3>
+        <p>We treat your property with respect — tidy at the end of every day, safe throughout the job.</p>
+      </div>
+      <div class="why-item">
+        <h3>Finished means finished</h3>
+        <p>We don't call a job done until you're happy with it. Every detail checked before handover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="display">Tell us about your project</h2>
+        <p style="margin-top:14px;color:#4a4f54">Call or email for a free, no-obligation quote. We'll get back to you within one working day.</p>
+      </div>
+      <ul class="contact-list">
+        <li>
+          <span class="label">Phone</span>
+          <a href="tel:07961702525">07961 702525</a>
+        </li>
+        <li>
+          <span class="label">Email</span>
+          <a href="mailto:mcroitoru247@gmail.com">mcroitoru247@gmail.com</a>
+        </li>
+        <li>
+          <a class="btn amber" href="mailto:mcroitoru247@gmail.com?subject=Quote%20request%20—%20MCRO%20Construction">Email us for a quote</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">MCRO<span>.</span> Construction Ltd</div>
+    <div>© 2026 MCRO Construction Ltd · 07961 702525 · mcroitoru247@gmail.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
